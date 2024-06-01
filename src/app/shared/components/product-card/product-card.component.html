@@ -1,0 +1,17 @@
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <img [src]="product.image" width="400" height="200" [alt]="product.title">
+    <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{product.title}}</div>
+        <p class="text-gray-700 text-base">
+            {{product.description.substring(0,100)}}...
+        </p>
+    </div>
+    <button (click)="addToCart(product)" type="button" class="bg-green-500 px-3 mx-3">
+        Add to cart
+    </button>
+
+    <button type="button" class="bg-yellow-500 px-3 mx-3">
+        View Product
+    </button>
+
+</div>

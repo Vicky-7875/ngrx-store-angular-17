@@ -1,0 +1,16 @@
+<!-- <ul>
+    <ng-container *ngFor="let prod of products$ | async">
+        <li class="text-white bg-red-500 p-2 m-3">{{prod.title}}</li>
+
+    </ng-container>
+</ul> -->
+
+<div class="grid grid-cols-4 gap-5">
+    @if(error |async){
+    <h1 class="text-4xl bg-gray-300 pt-20 w-full">Something went wrong</h1>
+    }@else{
+    @for(item of products$ |async;track $index ){
+    <app-product-card [product]="item" (handleAdd)="addItemToCart($event)" />
+    }
+    }
+</div>
