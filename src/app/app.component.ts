@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CounterComponent } from './counter/counter.component';
@@ -9,6 +9,7 @@ import { selectCount } from './states/counter/counter.selector';
 import { ProductsComponent } from './products/products.component';
 import { IProduct } from './shared/models/prodcut.interface';
 import { selectCartProductts } from './states/cart/cart.selector';
+import { CartStore } from './store/cart.store';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +30,11 @@ export class AppComponent {
   count$: Observable<number>;
   products$: Observable<IProduct[]>;
 
+  cartStore= inject(CartStore)
+
   constructor(private store: Store<AppState>) {
     this.count$ = this.store.select(selectCount);
     this.products$ = this.store.select(selectCartProductts);
+   
   }
 }

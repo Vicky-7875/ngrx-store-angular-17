@@ -1,14 +1,17 @@
 <div class="pt-20">
 
-    @if((cartItems$ | async)?.length ===0){
+    @if(cartStore.products().length ===0){
     <div>
         <h2>Your cart is empty</h2>
     </div>
     }
     @else{
-        <h2>Total Price :- {{totalPrice |async |currency }}</h2>
+        <h2>Total Price :- {{cartStore.totalPrice() |currency }}</h2>
     <ul>
-        @for(item of cartItems$ |async; track $index){
+       <!-- ngrx state magament state -->
+        <!-- @for(item of cartItems$ |async; track $index){ -->
+       
+            @for(item of cartStore.products(); track $index){
         <li>
             <div class="max-w-sm rounded overflow-hidden shadow-lg">
                 <img [src]="item.image" width="400" height="200" [alt]="item.title">
@@ -21,9 +24,9 @@
                     </p>
                 </div>
 
-                <button type="button" class="btn p-1 bg-gray-400" (click)="remove(item.id)">Remove</button>
-                <button type="button" class="btn p-1 bg-gray-400" (click)="increment(item.id)">increment</button>
-                <button type="button" class="btn p-1 bg-gray-400" (click)="decrement(item.id)">decrement</button>
+                <button type="button" class="btn p-1 bg-gray-400" (click)="cartStore.removeItem(item.id)">Remove</button>
+                <button type="button" class="btn p-1 bg-gray-400" (click)="cartStore.incrementItem(item.id)">increment</button>
+                <button type="button" class="btn p-1 bg-gray-400" (click)="cartStore.decrementItem(item.id ,item.quantity)">decrement</button>
             </div>
         </li>
 
